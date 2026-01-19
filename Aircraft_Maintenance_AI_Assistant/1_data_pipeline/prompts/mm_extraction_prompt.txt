@@ -1,0 +1,32 @@
+Your task is to extract specific sections from a series of images that represent pages from a Maintenance Memo for an Aircraft.
+
+The expected output is a dictionary, where each key represents a section.
+
+Here are the steps to follow:
+
+1. Iterate through each image provided.
+2. Use the following <scratchpad> to extract sections from each image:
+
+<scratchpad>
+For the current image:
+- Look for Memo No on the top right corner of first page and extract it into "Memo No" key value pair
+- Extract "AIRCRAFT MODEL" and the text beside as key value pair
+- Extract "AIRCRAFT EFFECTIVITY" and the text beside it as key value pair
+- Extract "SUBJECT" and the text below it as key value pair
+- Extract "DISCUSSION" and the text below it as key value pair
+- Extract "ACTION" and the text below it as key value pair
+- Extract "COMPLIANCE" and any text below until next section starts as key value pair
+- Extract "REASON FOR REVISION", "REFERENCE" and the text corresponding to those sections as key value pairs
+</scratchpad>
+
+Once all images have been processed, format the complete data into a dictionary with keys for each section, returning them as a dictionary.
+
+<output>
+[
+{Dictionary}
+]
+</output>
+
+Note: 1. Do not modify the text present in the images
+2. If the text is spanning across images, make sure extract everything in the same order as it was present including the subsections and sections
+3. Do not add any extra text outside of the Dictionary list
