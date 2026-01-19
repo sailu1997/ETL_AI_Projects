@@ -6,7 +6,7 @@ A production-ready system demonstrating hybrid search, knowledge graph construct
 
 ---
 
-## 🎯 Project Overview
+## Project Overview
 
 This system processes academic documents through a **4-stage pipeline** that combines:
 - **Azure AI Search** (vector + keyword hybrid search)
@@ -23,7 +23,7 @@ This system processes academic documents through a **4-stage pipeline** that com
 
 ---
 
-## 🏗️ System Architecture
+## System Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
@@ -53,7 +53,7 @@ This system processes academic documents through a **4-stage pipeline** that com
 │     ├─ Create nodes (doc, author, dept, concept)           │
 │     ├─ Create edges (TAGGED_AS, WRITES, COAUTHORS_WITH,    │
 │     │                PRODUCES, HAS_RESEARCH_INTEREST)       │
-│     └─ 7-stage processing with retry logic                 │
+│                   │
 └────────────────┬────────────────────────────────────────────┘
                  │
                  ▼
@@ -65,7 +65,7 @@ This system processes academic documents through a **4-stage pipeline** that com
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 AI_Search_Knowledge_Graph/
@@ -117,7 +117,7 @@ AI_Search_Knowledge_Graph/
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -171,7 +171,7 @@ cd 4_orchestration
 
 ---
 
-## 🎓 Technical Highlights
+## Technical Highlights
 
 ### 1. Hybrid Search (AI Search)
 
@@ -215,7 +215,7 @@ cd 4_orchestration
 
 ---
 
-## 📊 Performance Metrics
+## Performance Metrics
 
 | Metric | Value |
 |--------|-------|
@@ -228,7 +228,7 @@ cd 4_orchestration
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Each stage requires a configuration file:
 
@@ -287,7 +287,7 @@ Each stage requires a configuration file:
 
 ---
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Stage 1: AI Search Loader
 
@@ -328,13 +328,8 @@ SET retry_count = 0, stage_status = 'pending'
 WHERE row_id = '<doc_id>';
 ```
 
-**Issue**: Edge creation fails
-- Verify target node exists (e.g., concept node for TAGGED_AS)
-- Check Gremlin query escaping for special characters
 
----
-
-## 📈 Use Cases
+## Use Cases
 
 ### 1. Research Trend Analysis
 ```gremlin
@@ -369,23 +364,9 @@ results = search_client.search(
 
 ---
 
-## 🔐 Security Best Practices
 
-✅ **Never commit**:
-- `.env` files
-- `.cred.json` / `var.json`
-- `.db` files
-- `.log` files
-- API keys
 
-✅ **Always use**:
-- Environment variables or secure config files
-- Azure Key Vault for production
-- `.gitignore` for sensitive file types
-
----
-
-## 📚 Technology Stack
+## Technology Stack
 
 | Category | Technology |
 |----------|-----------|
@@ -400,67 +381,9 @@ results = search_client.search(
 | **Programming** | Python 3.9+ |
 | **Libraries** | azure-search-documents, gremlinpython, pyodbc, openai |
 
----
 
-## 🎯 Skills Demonstrated
 
-### Azure Cloud Services
-- ✅ Azure AI Search configuration and optimization
-- ✅ Cosmos DB Gremlin API graph operations
-- ✅ Azure SQL Database management
-- ✅ Blob Storage integration
-- ✅ Azure OpenAI service integration
 
-### Data Engineering
-- ✅ ETL pipeline design and implementation
-- ✅ Multi-stage data processing with checkpointing
-- ✅ Transactional operations and rollback logic
-- ✅ Vector embeddings and similarity search
-- ✅ Data validation and quality controls
 
-### AI/ML Engineering
-- ✅ LLM-as-Judge pattern implementation
-- ✅ Hybrid search (keyword + semantic)
-- ✅ Prompt engineering for concept extraction
-- ✅ Retry strategies and fallback logic
-- ✅ Vector database optimization
 
-### Software Engineering
-- ✅ Modular, maintainable code architecture
-- ✅ Error handling and logging
-- ✅ CLI tool development
-- ✅ Configuration management
-- ✅ Comprehensive documentation
 
----
-
-## 📖 Additional Resources
-
-- **Azure AI Search Docs**: https://learn.microsoft.com/en-us/azure/search/
-- **Cosmos DB Gremlin API**: https://learn.microsoft.com/en-us/azure/cosmos-db/gremlin/
-- **HNSW Algorithm**: https://arxiv.org/abs/1603.09320
-- **LLM-as-Judge Pattern**: Various research papers on using LLMs for evaluation
-
----
-
-## 📄 License
-
-This project is intended as a portfolio demonstration. Please adapt for your own use.
-
----
-
-## ✨ Summary
-
-This project demonstrates a **production-ready, enterprise-scale** knowledge graph system that combines:
-- Modern RAG (Retrieval-Augmented Generation) patterns
-- Graph database technology for relationship modeling
-- LLM-powered intelligent categorization
-- Azure cloud-native architecture
-
-Perfect for showcasing expertise in **AI/ML engineering**, **data engineering**, and **cloud architecture**.
-
----
-
-**Built by**: Saini Hari Kanaidu Gandham  
-**Purpose**: Portfolio showcase for AI/ML and cloud engineering roles  
-**Status**: Production-ready architecture (adapted for demonstration)
