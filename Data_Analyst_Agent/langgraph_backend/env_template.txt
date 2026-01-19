@@ -1,0 +1,16 @@
+# OpenAI Configuration
+OPENAI_API_KEY=your_openai_api_key_here
+
+# LangChain Configuration (disable tracing if not using LangSmith)
+LANGCHAIN_TRACING_V2=false
+LANGCHAIN_ENDPOINT=
+LANGCHAIN_API_KEY=
+LANGCHAIN_PROJECT=
+
+# Server Configuration
+HOST=0.0.0.0
+PORT=8000
+RELOAD=true
+
+# Database Configuration  
+DATABASE_PATH=user_sessions.db

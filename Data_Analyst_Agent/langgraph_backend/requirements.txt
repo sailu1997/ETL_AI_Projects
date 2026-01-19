@@ -1,0 +1,32 @@
+# Core Framework
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+python-dotenv==1.0.1
+pydantic==2.5.3
+
+# LangGraph & LangChain
+langgraph==0.0.20
+langchain-core==0.1.10
+langchain-openai==0.0.2
+
+# OpenAI
+openai==1.12.0
+
+# Data Processing
+pandas==2.1.4
+numpy==1.26.3
+openpyxl==3.1.2
+
+# Visualization
+plotly==5.18.0
+matplotlib==3.8.2
+
+# Database
+aiosqlite==0.19.0
+
+# File Handling
+python-multipart==0.0.6
+Pillow==10.2.0
+
+# HTTP Client
+httpx==0.26.0

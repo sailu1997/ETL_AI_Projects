@@ -1,0 +1,85 @@
+# Environment Variables
+.env
+.env.local
+*.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Virtual Environments
+venv/
+env/
+ENV/
+.venv
+
+# Generated Data & Uploads
+uploaded_files/
+cleaned_files/
+eda/
+**/uploaded_files/
+**/eda/
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+user_sessions.db
+
+# Logs
+*.log
+logs/
+*.txt
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS
+Thumbs.db
+.directory
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Data Files (optional - uncomment if you don't want to commit data)
+# *.csv
+# *.xlsx
+# *.xls
+# *.json
+# *.parquet
+
+# Visualization outputs
+*.png
+*.jpg
+*.jpeg
+*.html
+*.gif
+
+# Archives
+*.zip
+*.tar.gz
+*.rar
+
+# Temporary files
+temp/
+tmp/
+*.tmp
