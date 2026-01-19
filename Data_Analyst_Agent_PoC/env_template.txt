@@ -1,0 +1,9 @@
+# OpenAI Configuration
+OPENAI_API_KEY=your-openai-api-key-here
+
+# Backend Settings
+BACKEND_HOST=0.0.0.0
+BACKEND_PORT=8000
+
+# Frontend Settings
+BACKEND_URL=http://localhost:8000

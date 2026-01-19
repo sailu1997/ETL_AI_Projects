@@ -1,0 +1,49 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# Environment
+.env
+.env.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data files (users will upload their own)
+*.csv
+*.xlsx
+*.xls
+backend/models/uploaded_files/
+backend/eda/
+
+# Generated reports and plots
+*.html
+*.png
+*.jpg
+*.jpeg
+AutoViz_Plots_*/
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+tmp/
+temp/
+*.tmp
