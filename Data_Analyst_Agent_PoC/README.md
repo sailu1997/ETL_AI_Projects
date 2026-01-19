@@ -169,7 +169,3 @@ This is a **Proof of Concept** demonstrating:
 - Natural language to code generation
 - Safe code execution patterns
 - Interactive data analysis workflow
-
-## License
-
-This PoC was developed for demonstration purposes.
