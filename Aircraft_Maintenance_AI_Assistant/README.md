@@ -8,13 +8,13 @@ Aircraft maintenance engineers need quick access to critical information from th
 
 ## Solution
 
-This system processes maintenance PDFs using Vision AI, generates vector embeddings for semantic search, and provides a conversational interface for engineers to query documentation using natural language.
+This system processes maintenance PDFs using vLLM , generates vector embeddings for semantic and keyword based search, and provides a conversational interface for engineers to query documentation using natural language.
 
 ## Architecture
 
 The system consists of three main components:
 
-1. **Data Pipeline** - Extracts structured data from PDFs using Azure OpenAI Vision, processes and formats the data, then generates FAISS vector embeddings
+1. **Data Pipeline** - Extracts structured data from PDFs using Azure OpenAI api, processes and formats the data, then generates FAISS vector embeddings
 2. **Backend API** - FastAPI service that handles query embedding, vector search, and LLM-based response generation (RAG architecture)
 3. **Frontend** - Streamlit web application with multiple specialized tools for different maintenance tasks
 
