@@ -1,0 +1,24 @@
+# Credentials & Configuration
+*.cred.json
+var.json
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+venv/
+.venv/
+*.egg-info/
+
+# Logs & Artifacts
+*.log
+*.db
+failed_docs.json
+
+# IDE & OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db

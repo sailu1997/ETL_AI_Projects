@@ -1,0 +1,435 @@
+{
+    "searchIndexSchemas": {
+        "kg-docs-index": {
+            "description": "Document-level metadata + summary + filters",
+            "fields": [
+                {
+                    "name": "doc_id",
+                    "type": "Edm.String",
+                    "key": true,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": true,
+                    "facetable": false
+                },
+                {
+                    "name": "node_id",
+                    "type": "Edm.String",
+                    "key": false,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Must match graph doc.node_id (e.g. 'doc_<uuid>')"
+                },
+                {
+                    "name": "title",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "summary",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "summary_vector",
+                    "type": "Collection(Edm.Single)",
+                    "searchable": false,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false,
+                    "vectorSearchDimensions": 3072,
+                    "vectorSearchProfile": "summaryVectorProfile"
+                },
+                {
+                    "name": "url",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "language",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "publication_year",
+                    "type": "Edm.DateTimeOffset",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": true,
+                    "facetable": true
+                },
+                {
+                    "name": "hidden",
+                    "type": "Edm.Boolean",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "source",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true,
+                    "notes": "Values: 'sb' (ScholarBank) or 'dg' (DigitalGems)"
+                },
+                {
+                    "name": "author_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "author_normalized_names",
+                    "type": "Collection(Edm.String)",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "department_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "department_display_names",
+                    "type": "Collection(Edm.String)",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "concept_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "concept_labels",
+                    "type": "Collection(Edm.String)",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "doi",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "doc_type",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true,
+                    "notes": "Values like 'journal_article', 'thesis', 'conference_paper', 'report', etc."
+                },
+                {
+                    "name": "funder_normalized_names",
+                    "type": "Collection(Edm.String)",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "funder_display_names",
+                    "type": "Collection(Edm.String)",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "primary_concept_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Top-k concept.node_id ordered by descending strength"
+                },
+                {
+                    "name": "primary_concept_strengths",
+                    "type": "Collection(Edm.Double)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Parallel array of strengths for primary_concept_node_ids"
+                }
+            ]
+        },
+        "kg-chunks-index": {
+            "description": "Chunk-level content for RAG, tied back to docs",
+            "fields": [
+                {
+                    "name": "chunk_id",
+                    "type": "Edm.String",
+                    "key": true,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "chunk_text",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "chunk_vector",
+                    "type": "Collection(Edm.Single)",
+                    "searchable": false,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false,
+                    "vectorSearchDimensions": 3072,
+                    "vectorSearchProfile": "chunkVectorProfile"
+                },
+                {
+                    "name": "doc_id",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "doc_node_id",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Matches graph doc.node_id"
+                },
+                {
+                    "name": "doc_title",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "language",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "publication_year",
+                    "type": "Edm.DateTimeOffset",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": true,
+                    "facetable": true
+                },
+                {
+                    "name": "hidden",
+                    "type": "Edm.Boolean",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "source",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                },
+                {
+                    "name": "author_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "concept_node_ids",
+                    "type": "Collection(Edm.String)",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                }
+            ]
+        },
+        "kg-concepts-index": {
+            "description": "Concept descriptions + embeddings",
+            "fields": [
+                {
+                    "name": "concept_id",
+                    "type": "Edm.String",
+                    "key": true,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "node_id",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Matches graph concept.node_id"
+                },
+                {
+                    "name": "concept_label",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "concept_description",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "concept_description_vector",
+                    "type": "Collection(Edm.Single)",
+                    "searchable": false,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false,
+                    "vectorSearchDimensions": 3072,
+                    "vectorSearchProfile": "conceptVectorProfile"
+                }
+            ]
+        },
+        "kg-authors-index": {
+            "description": "Author resolution index for name → author_node_id",
+            "fields": [
+                {
+                    "name": "author_node_id",
+                    "type": "Edm.String",
+                    "key": true,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Matches graph author.node_id (identity or appearance)"
+                },
+                {
+                    "name": "author_id",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Stable internal id if present; null for appearance-only authors"
+                },
+                {
+                    "name": "normalized_name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": true,
+                    "facetable": false
+                },
+                {
+                    "name": "display_name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": false,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "type",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": true
+                }
+            ]
+        },
+        "kg-departments-index": {
+            "description": "Department resolution index for name → department_node_id",
+            "fields": [
+                {
+                    "name": "department_node_id",
+                    "type": "Edm.String",
+                    "key": true,
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false,
+                    "notes": "Matches graph department.node_id"
+                },
+                {
+                    "name": "department_id",
+                    "type": "Edm.String",
+                    "searchable": false,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                },
+                {
+                    "name": "normalized_name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": true,
+                    "facetable": false
+                },
+                {
+                    "name": "display_name",
+                    "type": "Edm.String",
+                    "searchable": true,
+                    "filterable": true,
+                    "sortable": false,
+                    "facetable": false
+                }
+            ]
+        }
+    }
+}

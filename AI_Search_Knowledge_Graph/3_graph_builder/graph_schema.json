@@ -1,0 +1,124 @@
+{
+  "graphSchemas": {
+    "common": {
+      "notes": [
+        "All vertices share these conventions:",
+        "  - 'id' = 'node_id' = 'pk' (string)",
+        "  - 'label' is the Gremlin label (vertex label)",
+        "  - Partition key path in Cosmos DB is '/pk'"
+      ]
+    },
+    "concept": {
+      "label": "concept",
+      "properties": {
+        "id": "string  // e.g. 'concept_<concept_number>' (== node_id, pk)",
+        "pk": "string  // same as id",
+        "label": "string  // 'concept'",
+        "node_id": "string  // same as id, used for joins to AI Search",
+        "concept_label": "string  // short human-readable name, e.g. 'Psycho-oncology'",
+        "hidden": "boolean  // whether this concept should be hidden from user-facing queries"
+      }
+    },
+    "doc": {
+      "label": "doc",
+      "properties": {
+        "id": "string  // e.g. 'doc_<id>' (== node_id, pk)",
+        "pk": "string  // same as id",
+        "label": "string  // 'doc'",
+        "node_id": "string  // same as id, used for joins to AI Search",
+        "title": "string  // paper title",
+        "source": "string  // 'sb' or 'dg'",
+        "hidden": "boolean  // if true, doc and its edges should be ignored by agents"
+      }
+    },
+    "author": {
+      "label": "author",
+      "identityStrategy": {
+        "withAuthorId": {
+          "node_idFormat": "author_<author_id>",
+          "description": "Represents a real person identity reused across docs when author_id is present"
+        },
+        "withoutAuthorId": {
+          "node_idFormat": "author_appearance_<doc_node_id>_<place>",
+          "description": "Represents a per-doc author appearance when author_id is missing"
+        }
+      },
+      "properties": {
+        "id": "string  // == node_id, e.g. 'author_AUTH_000123' or 'author_appearance_doc_SB_000987_2'",
+        "pk": "string  // same as id",
+        "label": "string  // 'author'",
+        "node_id": "string  // same as id, link back to Azure Ai Search",
+        "author_id": "string|null  // stable internal/ORCID-like id if available",
+        "normalized_name": "string  // canonical 'FirstName LastName' form used for search",
+        "display_name": "string  // full formatted name with titles, e.g. 'Assoc Prof Natalie Pang'",
+        "type": "string  // 'author' or 'supervisor'",
+        "place": "integer|null  // author order on the paper (1-based) when type='author'"
+      }
+    },
+    "department": {
+      "label": "department",
+      "properties": {
+        "id": "string  // e.g. 'department_DUKE_NUS_MS'",
+        "pk": "string  // same as id",
+        "label": "string  // 'department'",
+        "node_id": "string  // same as id, link back to Azure AI search",
+        "department_id": "string  // guaranteed non-empty internal id, e.g. 'DUKE_NUS_MS'",
+        "normalized_name": "string  // canonical name, e.g. 'Duke-NUS Medical School'",
+        "display_name": "string  // user-facing label"
+      }
+    },
+    "funder": {
+      "label": "funder",
+      "properties": {
+        "id": "string  // e.g. 'funder_NMRC_123'",
+        "pk": "string  // same as id",
+        "label": "string  // 'funder'",
+        "node_id": "string  // same as id, link back to Azure AI search",
+        "normalized_name": "string  // canonical form of funder name",
+        "display_name": "string  // user-facing label"
+      }
+    },
+    "edges": {
+      "HAS_PARENT": {
+        "from": "concept",
+        "to": "concept",
+        "direction": "child -> parent"
+      },
+      "HAS_RESEARCH_INTEREST": {
+        "from": "author",
+        "to": "concept",
+        "properties": {
+          "count": "integer  // number of documents this author has written about this concept"
+        }
+      },
+      "WRITES": {
+        "from": "author",
+        "to": "doc"
+      },
+      "COAUTHORS_WITH": {
+        "from": "author",
+        "to": "author",
+        "notes": [
+          "Only between authors where author_id is non-null",
+          "Represents identity-level coauthorship, not per-doc appearances"
+        ]
+      },
+      "PRODUCES": {
+        "from": "department",
+        "to": "doc"
+      },
+      "FUNDED": {
+        "from": "funder",
+        "to": "doc"
+      },
+      "TAGGED_AS": {
+        "from": "doc",
+        "to": "concept",
+        "direction": "doc -> concept",
+        "properties": {
+          "strength": "float  // 0.0–10.0, higher = stronger"
+        }
+      }
+    }
+  }
+}

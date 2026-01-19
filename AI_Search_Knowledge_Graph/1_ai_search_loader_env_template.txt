@@ -1,0 +1,21 @@
+# Azure AI Search Loader Configuration
+# Copy this file to the 1_ai_search_loader folder as .cred.json
+# Fill in your actual Azure credentials
+
+{
+  "azure_sql": {
+    "server": "your-server.database.windows.net",
+    "database": "your-database-name",
+    "username": "your-sql-username",
+    "password": "your-sql-password"
+  },
+  "azure_blob": {
+    "storage_account": "yourstorageaccount",
+    "storage_key": "your-storage-account-key",
+    "container_name": "your-container-name"
+  },
+  "asm_ai_search": {
+    "endpoint": "https://your-search-service.search.windows.net",
+    "api_key": "your-search-api-key"
+  }
+}

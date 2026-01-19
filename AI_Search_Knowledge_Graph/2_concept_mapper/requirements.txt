@@ -1,0 +1,12 @@
+# Azure SQL Database
+pymssql==2.3.1
+
+# Azure AI Search
+azure-search-documents==11.4.0
+azure-core==1.30.0
+
+# HTTP client for Azure Foundry LLM
+requests>=2.31.0
+
+# Numpy for vector operations
+numpy>=1.24.0

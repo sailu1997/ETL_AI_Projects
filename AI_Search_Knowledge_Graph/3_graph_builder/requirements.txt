@@ -1,0 +1,11 @@
+# Azure SQL Database
+pymssql==2.3.1
+
+# Azure CosmosDB Gremlin API
+gremlinpython==3.7.2
+aiohttp==3.9.1
+async-timeout==4.0.3
+
+# Azure AI Search
+azure-search-documents==11.4.0
+azure-core==1.30.0
